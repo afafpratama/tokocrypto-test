@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>TokoCrypto - ReactJS Test</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+
+    <body>
+        <div class="container">
+          <h1>TokoCrypto - ReactJS Test</h1>
+          <!-- Add Button -->
+          <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#addModal"><i class="glyphicon glyphicon-plus"></i> Add Data</button>
+          <br>
+          <!-- Data Table -->
+          <div class="panel panel-default" id="react-target"></div>
+        </div>
+
+        <!-- Add Modal -->
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="addModalLabel">Add Student</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="text" class="form-control" name="addid" placeholder="ID">
+                </div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="addname" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label>Major</label>
+                    <input type="text" class="form-control" name="addmajor" placeholder="Major">
+                </div>
+                <div class="form-group">
+                    <label>Year</label>
+                    <input type="text" class="form-control" name="addyear" placeholder="Year">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" name="addphone" placeholder="Phone">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="SaveAdd">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detail Modal -->
+        <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="detailModalLabel"></h4>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Name</label><br>
+                        <p name="name">-</p><br>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Major</label><br>
+                        <p name="major">-</p><br>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Year</label><br>
+                        <p name="year">-</p><br>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Phone</label><br>
+                        <p name="phone">-</p><br>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Edit Modal -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="editModalLabel"></h4>
+              </div>
+              <div class="modal-body">
+                <input type="hidden" name="editid">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="editname" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label>Major</label>
+                    <input type="text" class="form-control" name="editmajor" placeholder="Major">
+                </div>
+                <div class="form-group">
+                    <label>Year</label>
+                    <input type="text" class="form-control" name="edityear" placeholder="Year">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" name="editphone" placeholder="Phone">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="SaveEdit">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="deleteModalLabel"></h4>
+              </div>
+              <div class="modal-body">
+                <p name="deletetext"></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="SaveDelete">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script src="https://fb.me/react-0.14.6.js"></script>
+        <script src="https://fb.me/react-dom-0.14.6.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+        <script type="text/babel">
+            $(document).ready(function() {
+                ListData();
+            });
+
+            function ListData(){
+              fetch('https://my-json-server.typicode.com/afafpratama/json/mahasiswa')
+              // .then(response => response.json())
+              // .then(json => console.log(json))
+              .then(function(response) {
+                return response.json();
+              })
+              .then(function(json) {
+                class App extends React.Component {
+                  render() {
+                    let list = json.map((item) =>
+                      <tr>
+                        <td>{item.id}</td>
+                        <td>{item.nama}</td>
+                        <td>{item.angkatan}</td>
+                        <td>
+                            <div className="btn-group">
+                                <a onClick={DetailData.bind(this, item.id)} className="btn btn-info" data-toggle="modal" data-target="#detailModal"><i className="glyphicon glyphicon-info-sign"></i> Detail</a>
+                                <a onClick={EditData.bind(this, item.id)} className="btn btn-primary" data-toggle="modal" data-target="#editModal"><i className="glyphicon glyphicon-edit"></i> Edit</a>
+                                <a onClick={DeleteData.bind(this, item.id)} className="btn btn-danger" data-toggle="modal" data-target="#deleteModal"><i className="glyphicon glyphicon-remove"></i> Delete</a>
+                            </div>
+                        </td>
+                      </tr>
+                    )
+                    return (
+                      <div>
+                        <table className="table">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Name</th>
+                              <th>Year</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {list}
+                          </tbody>
+                        </table>
+                      </div>
+                    )
+                  }
+                };
+
+                ReactDOM.render(<App/>, document.getElementById('react-target'));
+              });
+            }
+
+            $("#SaveAdd").on("click", function() {
+              fetch('https://my-json-server.typicode.com/afafpratama/json/mahasiswa', {
+                method: 'POST',
+                body: JSON.stringify({
+                  "id": $("input[name='addid']").val(),
+                  "nama": $("input[name='addname']").val(),
+                  "jurusan": $("input[name='addmajor']").val(),
+                  "angkatan": $("input[name='addyear']").val(),
+                  "telp": $("input[name='addphone']").val()
+                }),
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8"
+                }
+              })
+              .then(function(response) {
+                return response.json();
+              })
+              .then(function(json) {
+                // console.log(json);
+                $('#addModal').modal('hide');
+                ListData();
+              })
+            });
+
+            function DetailData(id){
+              $('#detailModal').modal('show');
+              fetch('https://my-json-server.typicode.com/afafpratama/json/mahasiswa/' + id)
+              .then(function(response) {
+                return response.json();
+              })
+              .then(function(json) {
+                // console.log(json[0]);
+                $('#detailModalLabel').html("Detail of Student " + json.id);
+                $("p[name='name']").html(json.nama);
+                $("p[name='major']").html(json.jurusan);
+                $("p[name='year']").html(json.angkatan);
+                $("p[name='phone']").html(json.telp);
+              })
+            }
+
+            function EditData(id){
+              $('#editModal').modal('show');
+              fetch('https://my-json-server.typicode.com/afafpratama/json/mahasiswa/' + id)
+              .then(function(response) {
+                return response.json();
+              })
+              .then(function(json) {
+                $('#editModalLabel').html("Edit Student " + json.id);
+                $("input[name='editname']").val(json.nama);
+                $("input[name='editmajor']").val(json.jurusan);
+                $("input[name='edityear']").val(json.angkatan);
+                $("input[name='editphone']").val(json.telp);
+              })
+
+              $("#SaveEdit").on("click", function() {
+                fetch('https://my-json-server.typicode.com/afafpratama/json/mahasiswa/' + id, {
+                  method: 'PUT',
+                  body: JSON.stringify({
+                    "id": id,
+                    "nama": $("input[name='editname']").val(),
+                    "jurusan": $("input[name='editmajor']").val(),
+                    "angkatan": $("input[name='edityear']").val(),
+                    "telp": $("input[name='editphone']").val()
+                  }),
+                  headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                  }
+                })
+                .then(function(response) {
+                  return response.json();
+                })
+                .then(function(json) {
+                  // console.log(json);
+                })
+
+                fetch('https://my-json-server.typicode.com/afafpratama/json/mahasiswa/' + id, {
+                  method: 'PATCH',
+                  body: JSON.stringify({
+                    id: id
+                  }),
+                  headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                  }
+                })
+                .then(function(response) {
+                  return response.json();
+                })
+                .then(function(json) {
+                  // console.log(json);
+                  $('#editModal').modal('hide');
+                  ListData();
+                })
+              });
+            }
+
+            function DeleteData(id){
+              $('#deleteModal').modal('show');
+              fetch('https://my-json-server.typicode.com/afafpratama/json/mahasiswa/' + id)
+              .then(function(response) {
+                return response.json();
+              })
+              .then(function(json) {
+                $('#deleteModalLabel').html("Deletion of Student " + json.nama);
+                $("p[name='deletetext']").html("Are you sure want to delete Student " + json.nama + "?");
+              })
+
+              $("#SaveDelete").on("click", function() {
+                fetch('https://my-json-server.typicode.com/afafpratama/json/mahasiswa/' + id, {
+                  method: 'DELETE'
+                })
+                $('#deleteModal').modal('hide');
+                ListData();
+              });
+            }
+        </script>
+    </body>
+</html>
